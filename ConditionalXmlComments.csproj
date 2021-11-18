@@ -5,6 +5,13 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <Version>0.1.0</Version>
+    <Authors>Patrick Lanz</Authors>
+    <Company>OrdinaSoft</Company>
+    <Description>A tool to post-process the XML comments, in order to have conditions on them.</Description>
+    <Copyright>2021 OrdinaSoft</Copyright>
+    <RepositoryUrl>https://github.com/Patrick8639/ConditionalXmlComments</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

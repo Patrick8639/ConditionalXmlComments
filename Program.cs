@@ -41,7 +41,7 @@ try
     var Parent = Elmt.Parent!;
     Elmt.Remove ();
 
-    var Symbol = (String?) Elmt.Attribute ("Symbol");
+    var Symbol = (String?) Elmt.Attribute ("symbol");
 
     if (Symbol is null)
     {
