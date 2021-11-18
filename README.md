@@ -19,7 +19,7 @@ If the `client` symbol is defined, the XML comment inside it is kept, otherwise,
 ## Running the tool
 You can run the tool either:
 - In the post build events, so it is run automatically each time the solution is run.
-- In a command-line (batch file if multiple), so you can run it only when ypu need to generate the documentation.
+- In a command-line (batch file if multiple), so you can run it only when you need to generate the documentation.
 
 The first argument of the program is the name of the XML comment file to process.
 
