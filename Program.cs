@@ -9,6 +9,7 @@
  */
 
 
+using System.Diagnostics;
 using System.Xml.Linq;
 
 
@@ -28,6 +29,9 @@ for (var i = 1; i < args.Length; i++)
   Symbols.Add (args [i]);
 
 // Processes the file
+var Stopwatch = new Stopwatch ();
+Stopwatch.Start ();
+
 var NbConditionals = 0;
 
 try
@@ -45,7 +49,7 @@ try
 
     if (Symbol is null)
     {
-      Console.WriteLine ("Found <if> without Symbol attribute");
+      Console.WriteLine ("Found <if> without Symbol attribute.");
       Symbol = String.Empty;
     }
 
@@ -57,11 +61,13 @@ try
 }
 catch (Exception ex)
 {
-  Console.WriteLine ("Error during file processing");
+  Console.WriteLine ("Error during file processing.");
   Console.WriteLine (ex.Message);
   return -1;
 }
 
+Stopwatch.Stop ();
+
 // Indicates successful run
-Console.WriteLine ($"Successfully processed {NbConditionals} conditions.");
+Console.WriteLine ($"Successfully processed {NbConditionals} conditions in {Stopwatch.Elapsed}.");
 return 0;
