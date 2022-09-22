@@ -52,9 +52,7 @@ try
     }
 
     if (symbols.Contains (symbol))
-    {
       elmt.AddAfterSelf (new XElement (elmt).Nodes ());
-    }
 
     elmt.Remove ();
   }
