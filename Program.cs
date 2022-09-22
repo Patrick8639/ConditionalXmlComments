@@ -20,45 +20,48 @@ if (args.Length == 0)
   return -1;
 }
 
-var FileName = args [0];
+var fileName = args [0];
 
 // Defined symbols
-var Symbols = new HashSet <String> ();
+var symbols = new HashSet <String> ();
 
-for (var i = 1; i < args.Length; i++)
-  Symbols.Add (args [i]);
+for (var i = 1; i < args.Length; i ++)
+  symbols.Add (args [i]);
+
 
 // Processes the file
-var Stopwatch = new Stopwatch ();
-Stopwatch.Start ();
+var stopwatch = new Stopwatch ();
+stopwatch.Start ();
 
-var NbConditionals = 0;
+var nbConditionals = 0;
 
 try
 {
-  var XDoc = XDocument.Load (FileName, LoadOptions.PreserveWhitespace);
+  var doc = XDocument.Load (fileName, LoadOptions.PreserveWhitespace);
 
-  foreach (var Elmt in XDoc.Descendants ("if").ToArray ())
+  foreach (var elmt in doc.Descendants ("if").ToArray ())
   {
-    NbConditionals++;
+    nbConditionals ++;
 
-    var Parent = Elmt.Parent!;
-    Elmt.Remove ();
+    var symbol = (String?) elmt.Attribute ("symbol");
 
-    var Symbol = (String?) Elmt.Attribute ("symbol");
-
-    if (Symbol is null)
+    if (symbol is null)
     {
       Console.WriteLine ("Found <if> without Symbol attribute.");
-      Symbol = String.Empty;
+      symbol = String.Empty;
     }
 
-    if (Symbols.Contains (Symbol))
-      Parent.Add (Elmt.Nodes ());
+    if (symbols.Contains (symbol))
+    {
+      elmt.AddAfterSelf (new XElement (elmt).Nodes ());
+    }
+
+    elmt.Remove ();
   }
 
-  XDoc.Save (FileName);
+  doc.Save (fileName);
 }
+
 catch (Exception ex)
 {
   Console.WriteLine ("Error during file processing.");
@@ -66,8 +69,9 @@ catch (Exception ex)
   return -1;
 }
 
-Stopwatch.Stop ();
+stopwatch.Stop ();
+
 
 // Indicates successful run
-Console.WriteLine ($"Successfully processed {NbConditionals} conditions in {Stopwatch.Elapsed}.");
+Console.WriteLine ($"Successfully processed {nbConditionals} conditions in {stopwatch.Elapsed}.");
 return 0;

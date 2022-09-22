@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <Authors>Patrick Lanz</Authors>
     <Company>OrdinaSoft</Company>
     <Description>A tool to post-process the XML comments, in order to have conditions on them.</Description>
